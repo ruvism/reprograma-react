@@ -4,11 +4,11 @@ import "./Botao.css"
 function Botao(props) {
     let classes = "botao";
     if (props.desabilitado) {
-        classes += " botao--desabilitado";
-    };
+        classes += " botao--desabilitado"
+    }
     return (
-    <input className={classes} type="submit" value={props.children} />
-    );
-};
+    <input className={classes} disabled={props.desabilitado} type="submit" value={props.children} />
+    )
+}
 
 export default Botao;
