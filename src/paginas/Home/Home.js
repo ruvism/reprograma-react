@@ -1,8 +1,15 @@
 import React from 'react'
+import { Redirect } from  'react-router-dom'
+import { connect } from 'react-redux'
 import './Home.css'
 
 
-function Home(){
+function Home(props){
+if (!props.usuario){
+    return <Redirect to="/login" />
+
+}
+
     return(
         <main className="home">
             <h1>Post it</h1>
@@ -11,4 +18,13 @@ function Home(){
     )
 }
 
-export default Home
+function passaDadosDoEstadoNoProps(state){
+    return {
+        usuario: state.usuario
+    }
+}
+
+const conectaNaStore = connect(passaDadosDoEstadoNoProps)
+const HomeConectado = conectaNaStore(Home) 
+
+export default HomeConectado
