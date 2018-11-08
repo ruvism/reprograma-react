@@ -1,5 +1,4 @@
-import { combineReducers } from 'redux'
-
+import {combineReducers} from 'redux'
 
 let usuarioInicial = null
 
@@ -8,31 +7,31 @@ if (json){
     usuarioInicial = JSON.parse(json)
 }
 
-function usuario(state = usuarioInicial, action){
-    switch(action.type){
-        case 'LOGA_USUARIO': 
-            const usuarioLogado = action.dados
 
+function usuario (state = usuarioInicial, action) {
+    switch(action.type){
+        case 'LOGA_USUARIO':
+            const usuarioLogado = action.dados
             const json = JSON.stringify(usuarioLogado)
             localStorage.setItem('usuario', json)
             return usuarioLogado
-        case 'DESLOGA_USUARIO': 
+        case 'DESLOGA_USUARIO':
             localStorage.removeItem('usuario')
-            const usuarioDeslogado = null 
-            return usuarioDeslogado 
-        default: 
+            const usuarioDeslogado = null
+            return usuarioDeslogado
+        default:
             return state
     }
 }
 
 function postits (postitsAtuais = [], action){
     switch(action.type){
-        default:
-        return postitsAtuais
+        default: 
+            return postitsAtuais
     }
 }
 
-const reducers = combineReducers({
+const reducers = combineReducers ({
     usuario: usuario,
     postits: postits
 })

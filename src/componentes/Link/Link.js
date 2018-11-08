@@ -1,13 +1,11 @@
-import React from 'react'
-import { Link as PaginaLink } from 'react-router-dom'
-import "./Link.css"
+import React from "react";
+import {Link as RouterLink} from "react-router-dom";
+import "./Link.css";
 
 function Link(props) {
-    return (
-    <PaginaLink className="link" to={props.url}>
+    return (<RouterLink className="link" to={props.url}>
         {props.children}
-    </PaginaLink>
-    )
+    </RouterLink>);
 }
 
-export default Link
+export default Link;

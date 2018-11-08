@@ -1,46 +1,27 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
-import logo from './logo.png'
-import Menu from '../Menu/Menu'
-import './Navbar.css'
+import React from "react";
+import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
+import { deslogaUsuario } from "../../redux/actions";
+import "./Navbar.css";
+import logo from "./logo.png";
+import Menu from "../Menu/Menu";
 
-// no index: <Navbar usuario={usuario} deslogaUsuario={deslogaUsuario}/>
+//<Navbar usuario={usuario}>//
 
 function Navbar(props) {
-  
-  return (
-    <header className="navbar">
-    <Link to="/">
-    <img className="navbar__logo" src={logo} alt="Logo" />
-    </Link>
-
-    <Menu usuario={props.usuario} deslogaUsuario={props.deslogaUsuario}/>
-    </header>
-  )
+    return (
+        <header className="navbar">
+            <Link to="/">
+                <img className="navbar__logo" src={logo} alt="logo" />
+            </Link>
+            <Menu usuario={props.usuario} deslogaUsuario={props.deslogaUsuario} />
+        </header>
+    )
 }
 
-function passaNoPropsDadosDoEstado(state){
-  return{
-    usuario: state.usuario
-  }
-}
-
-function passaNoPropsDisparadoresDeAcao(dispatch){
-  return {
-    deslogaUsuario: () => {
-      const acao ={
-        type: 'DESLOGA_USUARIO'
-      }
-
-      dispatch(acao)
-    }
-  }
-}
-const conectaNaStore = connect(
-  passaNoPropsDadosDoEstado, passaNoPropsDisparadoresDeAcao
-)
-
-const NavbarConectado = conectaNaStore(Navbar)
-
-export default withRouter(NavbarConectado)
+export default withRouter(
+    connect(
+        (state) => ({ usuario: state.usuario }),
+        { deslogaUsuario }
+    )(Navbar)
+); //atualiza o componente sem a rota mudar. é necessário usar toda vez que o componente usa navlink//

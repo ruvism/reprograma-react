@@ -1,30 +1,38 @@
-import React from 'react'
-import { Redirect } from  'react-router-dom'
-import { connect } from 'react-redux'
-import './Home.css'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import carregando from "./carregando.svg";
+import "./Home.css";
 
+class Home extends Component {
 
-function Home(props){
-if (!props.usuario){
-    return <Redirect to="/login" />
+    constructor(props) {
+        super(props);
+        this.state = { carregando: true }
+    }
 
-}
-
-    return(
-        <main className="home">
-            <h1>Post it</h1>
-                     </main>
-
-    )
-}
-
-function passaDadosDoEstadoNoProps(state){
-    return {
-        usuario: state.usuario
+    render() {
+        if (!this.props.usuaio) {
+            return <Redirect to="/login" />
+        }
+        return (
+            <main className="home">
+                {this.state.carregando ? (
+                    <img className="home__loading" src={carregando} alt="Carregando" />
+                ) : (
+                        <div>
+                            Nesse espaço listarei os postits amanhã
+                    </div>
+                    )}
+            </main>
+        )
     }
 }
 
-const conectaNaStore = connect(passaDadosDoEstadoNoProps)
-const HomeConectado = conectaNaStore(Home) 
+// const state ={
+//     usuario: {"email: email@email.com"}
+// }
 
-export default HomeConectado
+export default connect(
+    (state) => ({ usuaio: state.usuario })
+)(Home);

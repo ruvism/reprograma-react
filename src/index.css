@@ -3,6 +3,11 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif;
 }
+
+.grupo__erro {
+  color: red;
+}
+
 .postit {
   font-size: 1rem;
   display: flex;
@@ -57,25 +62,5 @@ body {
   .postit:nth-child(3n + 2) {
       margin-left: 5%;
       margin-right: 5%;
-  }
-}
-
-
-
-
-
-.conta {
-  padding: 0.75rem 1rem 0;
-}
-
-@media (min-width: 768px) {
-  .conta {
-      padding: 1.5rem 20% 0;
-  }
-}
-
-@media (min-width: 992px) {
-  .conta {
-      padding: 2.25rem 30% 0;
   }
 }
